@@ -38,3 +38,8 @@ nav .container li {
 .nav-link:hover {
   color: maroon;
 }
+
+.true {
+  color: lime;
+  pointer-events: none;
+}

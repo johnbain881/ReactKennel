@@ -1,8 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import "./NavBar.css";
 
 const NavBar = () => {
+  
+  const isDisabled = (location, path) => {
+    console.log("################################")
+    console.log(location, path)
+    if (location === path) {
+      console.log(true)
+      return true
+    } else {
+      console.log(false)
+      return false 
+    }
+  }
+
   return (
     <header>
       <h1 className="site-title">
@@ -13,27 +26,27 @@ const NavBar = () => {
       <nav>
         <ul className="container">
           <li>
-            <Link className="nav-link" to="/">
+            <Link className={`nav-link ${isDisabled(window.location.pathname, "/")}`} to="/">
               Home
             </Link>
           </li>
           <li>
-            <Link className="nav-link" to="/animals">
+            <Link className={`nav-link ${isDisabled(window.location.pathname, "/animals")}`} to="/animals">
               Animals
             </Link>
           </li>
           <li>
-            <Link className="nav-link" to="/locations">
+            <Link className={`nav-link ${isDisabled(window.location.pathname, "/locations")}`} to="/locations">
               Locations
             </Link>
           </li>
           <li>
-            <Link className="nav-link" to="/owners">
+            <Link className={`nav-link ${isDisabled(window.location.pathname, "/owners")}`} to="/owners">
               Owners
             </Link>
           </li>
           <li>
-            <Link className="nav-link" to="/employees">
+            <Link className={`nav-link ${isDisabled(window.location.pathname, "/employees")}`} to="/employees">
               Employees
             </Link>
           </li>
@@ -43,4 +56,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default withRouter(NavBar);
