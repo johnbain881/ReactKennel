@@ -1,0 +1,116 @@
+{
+  "animals": [
+    {
+      "id": 1,
+      "name": "Doodles",
+      "breed": "Poodle"
+    },
+    {
+      "id": 6,
+      "name": "Esme",
+      "breed": "Pitbull"
+    },
+    {
+      "id": 7,
+      "name": "Doodles",
+      "breed": "Poodle"
+    },
+    {
+      "name": "Kevin",
+      "breed": "Dog",
+      "id": 8
+    },
+    {
+      "name": "Charlie",
+      "breed": "Golden Doodle",
+      "employeeId": 2,
+      "id": 9
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "name": "Fred",
+      "title": "Dog Feeder"
+    },
+    {
+      "id": 2,
+      "name": "Joe",
+      "title": "Dog Feeder"
+    },
+    {
+      "id": 3,
+      "name": "Bill",
+      "title": "Dog Feeder"
+    },
+    {
+      "id": 4,
+      "name": "Fred",
+      "title": "Dog Feeder"
+    },
+    {
+      "id": 5,
+      "name": "Joe",
+      "title": "Dog Feeder"
+    },
+    {
+      "id": 7,
+      "name": "Fred",
+      "title": "Dog Feeder"
+    }
+  ],
+  "owners": [
+    {
+      "id": 1,
+      "name": "Fred",
+      "title": "Owner of Doodle"
+    },
+    {
+      "id": 2,
+      "name": "Joe",
+      "title": "Owner of Decker"
+    },
+    {
+      "id": 3,
+      "name": "Bill",
+      "title": "Owner of Esme"
+    },
+    {
+      "id": 4,
+      "name": "Fred",
+      "title": "Owner of Doodle"
+    },
+    {
+      "id": 5,
+      "name": "Joe",
+      "title": "Owner of Decker"
+    },
+    {
+      "id": 6,
+      "name": "Bill",
+      "title": "Owner of Esme"
+    },
+    {
+      "id": 7,
+      "name": "Fred",
+      "title": "Owner of Doodle"
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "name": "Nashville",
+      "breed": "Nashville"
+    },
+    {
+      "id": 3,
+      "name": "Nashville",
+      "breed": "Nashville"
+    },
+    {
+      "id": 5,
+      "name": "Nashville",
+      "breed": "Nashville"
+    }
+  ]
+}
