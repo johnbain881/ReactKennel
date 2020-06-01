@@ -26,23 +26,32 @@ const AnimalDetail = props => {
       props.history.push("/animals")
     );
   };
-
-  return (
-    <div className="card">
-      <div className="card-content">
-        <picture>
-          <img src={require("./dog.svg")} alt="My Dog" />
-        </picture>
-        <h3>
-          Name: <span style={{ color: "darkslategrey" }}>{animal.name}</span>
-        </h3>
-        <p>Breed: {animal.breed}</p>
-        <button type="button" disabled={isLoading} onClick={handleDelete}>
-          Discharge
-        </button>
+  if (animal.name !== undefined) {
+    return (
+      <div className="card">
+        <div className="card-content">
+          <picture>
+            <img src={require("./dog.svg")} alt="My Dog" />
+          </picture>
+          <h3>
+            Name: <span style={{ color: "darkslategrey" }}>{animal.name}</span>
+          </h3>
+          <p>Breed: {animal.breed}</p>
+          <button type="button" disabled={isLoading} onClick={handleDelete}>
+            Discharge
+          </button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="card">
+        <div className="card-content">
+          <h1>We're Sorry! That animal is no longer at this kennel</h1>
+        </div>
+      </div>
+    )
+  }
 };
 
 export default AnimalDetail;

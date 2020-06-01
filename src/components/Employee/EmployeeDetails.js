@@ -16,17 +16,27 @@ const EmployeeDetail = props => {
       });
   }, [props.employeeId]);
 
-  return (
-    <div className="card">
-      <div className="card-content">
-        {/* <picture>
-          <img src={require('./dog.svg')} alt="My Dog" />
-        </picture> */}
-        <h3>Name: <span style={{ color: 'darkslategrey' }}>{employee.name}</span></h3>
-        <p>Title: {employee.title}</p>
+  if (employee.name !== undefined) {
+    return (
+      <div className="card">
+        <div className="card-content">
+          {/* <picture>
+            <img src={require('./dog.svg')} alt="My Dog" />
+          </picture> */}
+          <h3>Name: <span style={{ color: 'darkslategrey' }}>{employee.name}</span></h3>
+          <p>Title: {employee.title}</p>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="card">
+        <div className="card-content">
+          <h1>We're Sorry! That employee is no longer at this kennel</h1>
+        </div>
+      </div>
+    )
+  }
 }
 
 export default EmployeeDetail;

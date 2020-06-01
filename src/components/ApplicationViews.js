@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import React from "react";
 import Home from "./home/Home";
 //only include these once they are built - previous practice exercise
@@ -11,7 +11,13 @@ import EmployeeDetail from "./Employee/EmployeeDetails";
 import LocationDetail from "./Location/LocationDetails";
 import OwnerDetail from "./Owner/OwnerDetails";
 import AnimalForm from './animal/AnimalForm'
+import LocationForm from './Location/LocationForm'
+import OwnerForm from './Owner/OwnerForm'
+import EmployeeForm from './Employee/EmployeeForm'
+import Login from "./auth/Login";
 
+
+const isAuthenticated = () => sessionStorage.getItem("credentials") !== null;
 
 const ApplicationViews = () => {
   return (
@@ -23,12 +29,15 @@ const ApplicationViews = () => {
           return <Home />;
         }}
       />
-      <Route
-        exact
-        path="/locations"
-        render={props => {
-          return <LocationList />;
-        }}
+      <Route 
+        exact 
+        path="/locations" render={props => {
+          if (isAuthenticated()) {
+            return <LocationList {...props} />
+          } else {
+            return <Redirect to="/login" />
+          }
+        }} 
       />
       <Route 
         path="/locations/:locationId(\d+)" 
@@ -42,12 +51,21 @@ const ApplicationViews = () => {
           )
         }} 
       />
-      <Route
-        exact
-        path="/employees"
-        render={props => {
-          return <EmployeeList />;
-        }}
+      <Route 
+        path="/locations/new" 
+        render={(props) => {
+          return <LocationForm {...props} />
+        }} 
+      />
+      <Route 
+        exact 
+        path="/employees" render={props => {
+          if (isAuthenticated()) {
+            return <EmployeeList {...props} />
+          } else {
+            return <Redirect to="/login" />
+          }
+        }} 
       />
       <Route 
         path="/employees/:employeeId(\d+)" 
@@ -56,12 +74,21 @@ const ApplicationViews = () => {
           return <EmployeeDetail employeeId={parseInt(props.match.params.employeeId)}/>
         }} 
       />
-      <Route
-        exact
-        path="/owners"
-        render={props => {
-          return <OwnerList />;
-        }}
+      <Route 
+        path="/employees/new" 
+        render={(props) => {
+          return <EmployeeForm {...props}  />
+        }} 
+      />
+      <Route 
+        exact 
+        path="/owners" render={props => {
+          if (isAuthenticated()) {
+            return <OwnerList {...props} />
+          } else {
+            return <Redirect to="/login" />
+          }
+        }} 
       />
       <Route 
         path="/owners/:ownerId(\d+)" 
@@ -70,16 +97,23 @@ const ApplicationViews = () => {
           return <OwnerDetail ownerId={parseInt(props.match.params.ownerId)}/>
         }} 
       />
+      <Route 
+        path="/owners/new" 
+        render={(props) => {
+          return <OwnerForm {...props} />
+        }} 
+      />
       {/* Make sure you add the `exact` attribute here */}
       <Route 
         exact 
-        path="/animals" 
-        render={(props) => {
-          return <AnimalList 
-            {...props}
-          />
+        path="/animals" render={props => {
+          if (isAuthenticated()) {
+            return <AnimalList {...props} />
+          } else {
+            return <Redirect to="/login" />
+          }
         }} 
-        />
+      />
       <Route 
         path="/animals/:animalId(\d+)" 
         render={(props) => {
@@ -98,14 +132,7 @@ const ApplicationViews = () => {
           return <AnimalForm {...props} />
         }} 
       />
-      {/*
-        This is a new route to handle a URL with the following pattern:
-        http://localhost:3000/animals/1
-
-        It will not handle the following URL because the `(\d+)`
-        matches only numbers after the final slash in the URL
-        http://localhost:3000/animals/jack
-      */}
+      <Route path="/login" component={Login} />
     </React.Fragment>
   );
 };

@@ -16,17 +16,27 @@ const OwnerDetail = props => {
       });
   }, [props.ownerId]);
 
-  return (
-    <div className="card">
-      <div className="card-content">
-        {/* <picture>
-          <img src={require('./dog.svg')} alt="My Dog" />
-        </picture> */}
-        <h3>Name: <span style={{ color: 'darkslategrey' }}>{owner.name}</span></h3>
-        <p>Title: {owner.title}</p>
+  if (owner.name !== undefined) {
+    return (
+      <div className="card">
+        <div className="card-content">
+          {/* <picture>
+            <img src={require('./dog.svg')} alt="My Dog" />
+          </picture> */}
+          <h3>Name: <span style={{ color: 'darkslategrey' }}>{owner.name}</span></h3>
+          <p>Title: {owner.title}</p>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="card">
+        <div className="card-content">
+          <h1>We're Sorry! That owner is no longer at this kennel</h1>
+        </div>
+      </div>
+    )
+  }
 }
 
 export default OwnerDetail;

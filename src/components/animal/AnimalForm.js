@@ -10,7 +10,6 @@ const AnimalForm = props => {
 
   const handleFieldChange = evt => {
     const stateToChange = { ...animal };
-    console.log(evt.target.value)
     let targetValue = evt.target.value
     if (/^\d+$/.test(targetValue)) {
       targetValue = parseInt(targetValue)
