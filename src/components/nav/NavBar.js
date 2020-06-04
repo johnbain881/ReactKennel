@@ -2,18 +2,19 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import "./NavBar.css";
 
-const NavBar = () => {
+const NavBar = (props) => {
   
   const isDisabled = (location, path) => {
-    console.log("################################")
-    console.log(location, path)
     if (location === path) {
-      console.log(true)
       return true
     } else {
-      console.log(false)
       return false 
     }
+  }
+
+  const handleLogout = () => {
+    props.clearUser();
+    props.history.push('/');
   }
 
   return (
@@ -30,26 +31,42 @@ const NavBar = () => {
               Home
             </Link>
           </li>
-          <li>
-            <Link className={`nav-link ${isDisabled(window.location.pathname, "/animals")}`} to="/animals">
-              Animals
-            </Link>
-          </li>
+          {props.hasUser
+          ? <li>
+              <Link className={`nav-link ${isDisabled(window.location.pathname, "/animals")}`} to="/animals">
+                Animals
+              </Link>
+            </li>
+          : null}
           <li>
             <Link className={`nav-link ${isDisabled(window.location.pathname, "/locations")}`} to="/locations">
               Locations
             </Link>
           </li>
-          <li>
-            <Link className={`nav-link ${isDisabled(window.location.pathname, "/owners")}`} to="/owners">
-              Owners
-            </Link>
-          </li>
-          <li>
-            <Link className={`nav-link ${isDisabled(window.location.pathname, "/employees")}`} to="/employees">
-              Employees
-            </Link>
-          </li>
+          {props.hasUser
+          ? <li>
+              <Link className={`nav-link ${isDisabled(window.location.pathname, "/owners")}`} to="/owners">
+                Owners
+              </Link>
+            </li>
+          
+          : null}
+          {props.hasUser
+          ? <li>
+              <Link className={`nav-link ${isDisabled(window.location.pathname, "/employees")}`} to="/employees">
+                Employees
+              </Link>
+            </li>
+          : null}
+          {!props.hasUser
+          ? <li>
+              <Link className={`nav-link ${isDisabled(window.location.pathname, "/login")}`} to="/login">
+                Login
+              </Link>
+            </li>
+          : <li>
+              <span className="nav-link" onClick={handleLogout}> Logout </span>
+            </li>}
         </ul>
       </nav>
     </header>
